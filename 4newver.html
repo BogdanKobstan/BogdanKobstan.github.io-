@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моё интерактивное резюме</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --text-color: #2c3e50;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.5s ease;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        header:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 15px 0 5px;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .name-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin: 10px 0;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        section:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            display: inline-block;
+            margin-top: 0;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .edit-section {
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 200px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .random-bg {
+            background-color: var(--secondary-color);
+        }
+
+        .random-bg:hover {
+            background-color: #27ae60;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 20px 10px;
+            }
+            
+            .name-container {
+                flex-direction: column;
+            }
+            
+            input[type="text"] {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://i.dailymail.co.uk/i/pix/2015/07/20/06/2AAF419800000578-0-image-m-67_1437370168803.jpg" alt="Фото профиля" class="profile-img">
+            <div class="name-container">
+                <h1 id="firstName">Богдан</h1>
+                <h1 id="lastName">Кобзев</h1>
+            </div>
+            <h2>Студент</h2>
+            <p class="title">Автоматизатор</p>
+        </header>
+
+        <section>
+            <h3>Обо мне</h3>
+            <p>Я студент, обучающийся по специальности "Автоматизация технологических процессов и производств". Изучаю современные технологии и инструменты программирования, активно развиваюсь в области разработки и автоматизации решений. Интересуюсь веб-технологиями и стремлюсь применять свои знания на практике.</p>
+        </section>
+
+        <section>
+           <section>
+    <h3>Опыт работы</h3>
+    <ul>
+        <li><strong>НИЛ АСУиИ (Научно-исследовательская лаборатория)</strong> (2023–настоящее время) – Студент-практикант</li>
+        <li><strong>Проект по курсу "Промышленная автоматика"</strong> (2023) – Разработка схем автоматизации с использованием ПЛК Siemens S7-1200</li>
+        <li><strong>Стажировка в ООО "ЭнергоАвтоматика"</strong> (2022) – Изучение принципов построения систем управления, участие в настройке SCADA-систем</li>
+    </ul>
+</section>
+
+        <section>
+            <h3>Образование</h3>
+            <ul>
+                <li><strong>МГТУ СТАНКИН</strong> - Бакалавр информационных технологий (2022-2026)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Навыки</h3>
+            <div class="skills">
+                <span class="skill">HTML5</span>
+                <span class="skill">CSS3</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">React</span>
+                <span class="skill">Git</span>
+                <span class="skill">Адаптивная верстка</span>
+                <span class="skill">UI/UX</span>
+            </div>
+        </section>
+
+        <div class="edit-section">
+            <h3>Изменить фамилию</h3>
+            <input type="text" id="newLastName" placeholder="Введите новую фамилию">
+            <button onclick="changeLastName()">Изменить</button>
+            <button class="random-bg" onclick="changeBackground()">Случайный фон</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2023 Моё интерактивное резюме | Контакты: example@email.com</p>
+    </footer>
+
+    <script>
+        function changeLastName() {
+            const newLastName = document.getElementById('newLastName').value;
+            if (newLastName.trim() !== '') {
+                document.getElementById('lastName').textContent = newLastName;
+                document.getElementById('newLastName').value = '';
+                alert('Фамилия успешно изменена на: ' + newLastName);
+            } else {
+                alert('Пожалуйста, введите новую фамилию');
+            }
+        }
+
+        function changeBackground() {
+            const colors = [
+                '#f9f9f9', '#f0f8ff', '#fffaf0', '#f5f5dc', 
+                '#e6e6fa', '#ffebcd', '#f0fff0', '#ffe4e1',
+                '#f0f8ff', '#e0ffff', '#f5fffa', '#fff0f5'
+            ];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.backgroundColor = randomColor;
+        }
+
+        // Анимация при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('header, section');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+
+        // Изначальные стили для анимации
+        const style = document.createElement('style');
+        style.textContent = `
+            header, section {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html> 

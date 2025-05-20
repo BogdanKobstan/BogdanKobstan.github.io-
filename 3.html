@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Уточнение возраста</title>
+</head>
+<body>
+    <script>
+        function askAge() {
+    while (true) {
+        let age = prompt("Пожалуйста, введите ваш возраст:");
+
+        if (age === null) {
+            alert("Вы отменили ввод возраста");
+            return;
+        }
+
+        age = parseInt(age);
+
+        if (isNaN(age)) {
+            alert("Пожалуйста, введите число!");
+            continue;
+        }
+
+        // Проверяем, что возраст в пределах от 1 до 100
+        if (age < 1 || age > 100) {
+            alert("Возраст должен быть от 1 до 100 лет. Пожалуйста, введите корректное значение.");
+            continue;
+        }
+
+        let isConfirmed = confirm("Вы уверены, что вам " + age + " лет?");
+
+        if (isConfirmed) {
+            alert("Спасибо! Ваш возраст: " + age);
+            return;
+        }
+        // Если не подтверждено, цикл продолжается
+    }
+}
+        
+        // Запускаем функцию при загрузке страницы
+        askAge();
+    </script>
+</body>
+</html>

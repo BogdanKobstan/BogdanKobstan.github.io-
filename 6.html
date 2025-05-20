@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Богдан Кобзев - Режиссёр</title>
+    <style>
+        /* Основные стили и переменные */
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --text: #333;
+            --light: #f9f9f9;
+            --highlight: #e94560;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Основная структура */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка с фото и основной информацией */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: 50px;
+        }
+
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--highlight);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            margin-bottom: 20px;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            color: var(--highlight);
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .description {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--highlight);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background-color: #d13858;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--highlight);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--highlight);
+        }
+
+        /* Секции резюме */
+        section {
+            padding: 60px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--highlight);
+        }
+
+        /* Опыт работы */
+        .experience-item {
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+
+        .experience-date {
+            color: #777;
+            font-style: italic;
+        }
+
+        /* Образование */
+        .education-item {
+            margin-bottom: 30px;
+        }
+
+        .education-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .education-degree {
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .education-date {
+            color: #777;
+        }
+
+        /* Навыки */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-category h3 {
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .skill-list {
+            list-style-type: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .skill-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--highlight);
+            font-weight: bold;
+        }
+
+        /* Контактная форма */
+        #contact {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+            padding: 80px 0 100px;
+        }
+
+        #contact h2 {
+            color: white;
+        }
+
+        #contact h2::after {
+            background-color: var(--highlight);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .error {
+            color: var(--highlight);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Подвал */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+                padding: 40px 0;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .title {
+                font-size: 1rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .experience-date {
+                margin-top: 5px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка с основной информацией -->
+    <header>
+        <div class="container">
+            <div class="profile">
+                <img src="https://forum-ru-cdn.warthunder.com/original/3X/0/d/0d79b5b38799f0926da5aa21510c2eb0e18d34cb.jpeg" alt="Богдан Кобзев" class="profile-img">
+                <h1>Богдан Кобзев</h1>
+                <p class="title">Режиссёр кино и телевидения</p>
+                <p class="description">
+                    Российский режиссёр, известный по фильмам "Тени забытых", "Последний рассвет" 
+                    и "Бесконечность". Обладатель премии "Золотой орёл" и номинант на премию "Ника". 
+                    Специализируюсь на драмах и психологических триллерах.
+                </p>
+                <div class="buttons">
+                    <a href="#" class="btn" id="downloadBtn">Скачать резюме</a>
+                    <a href="#contact" class="btn btn-outline" id="contactBtn">Связаться со мной</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Опыт работы -->
+        <section id="experience">
+            <h2>Режиссёрские работы</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Бесконечность</h3>
+                    <span class="experience-date">2023</span>
+                </div>
+                <p>Жанр: Психологическая драма</p>
+                <p>Фильм о человеке, застрявшем во временной петле, получил приз за лучшую режиссуру на кинофестивале "Кинотавр".</p>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Последний рассвет</h3>
+                    <span class="experience-date">2020</span>
+                </div>
+                <p>Жанр: Военная драма</p>
+                <p>История о последних днях Второй мировой войны глазами простого солдата. Фильм номинировался на премию "Ника".</p>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Тени забытых</h3>
+                    <span class="experience-date">2017</span>
+                </div>
+                <p>Жанр: Мистический триллер</p>
+                <p>Мой дебютный полнометражный фильм, получивший признание критиков за оригинальный визуальный стиль.</p>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Короткометражные проекты</h3>
+                    <span class="experience-date">2012-2016</span>
+                </div>
+                <p>Жанр: Различные</p>
+                <p>Серия короткометражных фильмов, включая "Тишину" (2014, приз зрительских симпатий на фестивале "Дух огня") и "Отражение" (2016).</p>
+            </div>
+        </section>
+
+        <!-- Образование -->
+        <section id="education">
+            <h2>Образование</h2>
+            
+            <div class="education-item">
+                <h3 class="education-title">МГТУ "СТАНКИН"</h3>
+                <p class="education-degree">Факультет информационных технологий</p>
+                <p class="education-date">2008-2013</p>
+                <p>Бакалавр информационных технологий, параллельно занимался в студенческом киноклубе.</p>
+            </div>
+            
+            <div class="education-item">
+                <h3 class="education-title">Высшие курсы кино и телевидения</h3>
+                <p class="education-degree">Режиссура игрового кино</p>
+                <p class="education-date">2014-2016</p>
+                <p>Профессиональная переподготовка под руководством известных российских режиссёров.</p>
+            </div>
+        </section>
+
+        <!-- Навыки -->
+        <section id="skills">
+            <h2>Навыки</h2>
+            
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Режиссёрские</h3>
+                    <ul class="skill-list">
+                        <li>Работа с актёрами</li>
+                        <li>Постановка сцен</li>
+                        <li>Раскадровка</li>
+                        <li>Работа с оператором</li>
+                        <li>Монтажное мышление</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Технические</h3>
+                    <ul class="skill-list">
+                        <li>Adobe Premiere Pro</li>
+                        <li>DaVinci Resolve</li>
+                        <li>Основы работы с камерой</li>
+                        <li>Световое оборудование</li>
+                        <li>Звукорежиссура</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Другие</h3>
+                    <ul class="skill-list">
+                        <li>Сценарное мастерство</li>
+                        <li>Кастинг</li>
+                        <li>Продюсирование</li>
+                        <li>Работа с бюджетом</li>
+                        <li>Фестивальный маркетинг</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контактная форма -->
+        <section id="contact">
+        <h2>Связаться со мной</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <p>Если вы хотите обсудить сотрудничество, предложить проект или пригласить на участие в фестивале, пожалуйста, заполните форму.</p>
+                <p>Я обычно отвечаю в течение 3-5 рабочих дней.</p>
+            </div>
+            
+            <!-- Форма с использованием FormSubmit -->
+            <form 
+                class="contact-form" 
+                id="contactForm"
+                action="https://formsubmit.co/ваша_почта@gmail.com" 
+                method="POST"
+            >
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="Новое сообщение от Богдана Кобзева">
+                <input type="hidden" name="_next" value="https://вашсайт.ru/thanks.html">
+                
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                    <div class="error" id="nameError">Пожалуйста, введите ваше имя</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                    <div class="error" id="emailError">Пожалуйста, введите корректный email</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Сообщение</label>
+                    <textarea id="message" name="message" class="form-control" required></textarea>
+                    <div class="error" id="messageError">Пожалуйста, введите ваше сообщение</div>
+                </div>
+                
+                <button type="submit" class="btn">Отправить сообщение</button>
+            </form>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Богдан Кобзев. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация появления секций при скролле
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Плавный скролл для кнопки "Связаться со мной"
+            document.getElementById('contactBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                const contactSection = document.getElementById('contact');
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Заглушка для кнопки скачивания
+            document.getElementById('downloadBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Резюме будет скачано в формате PDF (заглушка для примера)');
+            });
+            
+            // Валидация формы
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let isValid = true;
+                
+                // Проверка имени
+                const name = document.getElementById('name');
+                const nameError = document.getElementById('nameError');
+                if (name.value.trim() === '') {
+                    nameError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    nameError.style.display = 'none';
+                }
+                
+                // Проверка email
+                const email = document.getElementById('email');
+                const emailError = document.getElementById('emailError');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email.value)) {
+                    emailError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    emailError.style.display = 'none';
+                }
+                
+                // Проверка сообщения
+                const message = document.getElementById('message');
+                const messageError = document.getElementById('messageError');
+                if (message.value.trim() === '') {
+                    messageError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    messageError.style.display = 'none';
+                }
+                
+                // Если форма валидна, показываем сообщение об успехе
+                if (isValid) {
+                    alert('Сообщение отправлено! Спасибо за ваше обращение.');
+                    contactForm.reset();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

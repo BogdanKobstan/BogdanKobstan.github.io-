@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Индивидуальное задание 2</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #dfe9f3, #ffffff);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    input {
+      padding: 12px;
+      width: 80%;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    #result {
+      margin-top: 25px;
+      font-size: 20px;
+      color: #34495e;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Введите ваше имя</h2>
+    <input type="text" id="nameInput" placeholder="Например: Алексей">
+    <br>
+    <button onclick="assignAdmin()">Показать admin</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function assignAdmin() {
+      let name = document.getElementById("nameInput").value.trim();
+      let admin = name;
+      const result = document.getElementById("result");
+
+      if (admin) {
+        result.innerText = `admin: ${admin}`;
+        result.style.color = "#34495e";
+      } else {
+        result.innerText = "Пожалуйста, введите имя.";
+        result.style.color = "#e74c3c";
+      }
+    }
+  </script>
+</body>
+</html>

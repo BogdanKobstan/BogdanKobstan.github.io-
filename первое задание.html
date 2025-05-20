@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Нахождение минимума</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      width: 80%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Минимум из двух чисел</h2>
+
+    <input type="number" id="num1" placeholder="Первое число"><br>
+    <input type="number" id="num2" placeholder="Второе число"><br>
+
+    <button onclick="findMin()">Найти минимум</button>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function max(a, b) {
+      return a < b ? a : b;
+    }
+
+    function findMin() {
+      const a = parseFloat(document.getElementById("num1").value);
+      const b = parseFloat(document.getElementById("num2").value);
+
+      const resultField = document.getElementById("result");
+
+      if (isNaN(a) || isNaN(b)) {
+        resultField.innerText = "Пожалуйста, введите два числа.";
+        resultField.style.color = "#e74c3c"; // красный цвет для ошибки
+      } else {
+        resultField.innerText = "Минимум: " + max(a, b);
+        resultField.style.color = "#2c3e50"; // тёмно-синий цвет для результата
+      }
+    }
+  </script>
+</body>
+</html>
